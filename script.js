@@ -6,9 +6,11 @@ navigator.geolocation.getCurrentPosition(async (position) => {
 
     const timings = data.data.timings;
     const date = data.data.date.readable;
+    const hijri = data.data.date.hijri;
+    const hijriDate = `${hijri.day} ${hijri.month.en} ${hijri.year} AH`;
     const prayers = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
 
-    document.getElementById('date').textContent = date;
+    document.getElementById('date').textContent = `${date} · ${hijriDate}`;
 
     const container = document.getElementById('prayer-times');
 
