@@ -62,3 +62,12 @@ h1 {
     color: #c9a84c;
     font-weight: 500;
 }
+
+.prayer-card.active {
+    border-left: 3px solid #e8c96e;
+    background-color: #1e2d50;
+}
+
+.prayer-card.active .prayer-name {
+    color: #c9a84c;
+}
