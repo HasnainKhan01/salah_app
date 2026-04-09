@@ -22,6 +22,13 @@ navigator.geolocation.getCurrentPosition(async (position) => {
     return hours * 60 + minutes;
     }
 
+    function formatTime(timeStr) {
+        const [hours, minutes] = timeStr.split(':').map(Number);
+        const period = hours >= 12 ? 'PM' : 'AM';
+        const displayHours = hours % 12 || 12;
+        return `${displayHours}:${minutes.toString().padStart(2, '0')} ${period}`;
+    }
+
     const prayerMinutes = prayers.map(prayer => timeToMinutes(timings[prayer]));
 
     let currentPrayerIndex = -1;
@@ -38,7 +45,7 @@ navigator.geolocation.getCurrentPosition(async (position) => {
         if (index === currentPrayerIndex) card.classList.add('active');
         card.innerHTML = `
             <span class="prayer-name">${prayer}</span>
-            <span class="prayer-time">${timings[prayer]}</span>
+            <span class="prayer-time">${formatTime(timings[prayer])}</span>
         `;
         container.appendChild(card);
     });
