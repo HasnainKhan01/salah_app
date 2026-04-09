@@ -5,13 +5,20 @@ navigator.geolocation.getCurrentPosition(async (position) => {
     const data = await response.json();
 
     const timings = data.data.timings;
+    const date = data.data.date.readable;
     const prayers = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+
+    document.getElementById('date').textContent = date;
 
     const container = document.getElementById('prayer-times');
 
     prayers.forEach(prayer => {
-        const div = document.createElement('div');
-        div.textContent = `${prayer}: ${timings[prayer]}`;
-        container.appendChild(div);
+        const card = document.createElement('div');
+        card.classList.add('prayer-card');
+        card.innerHTML = `
+            <span class="prayer-name">${prayer}</span>
+            <span class="prayer-time">${timings[prayer]}</span>
+        `;
+        container.appendChild(card);
     });
 });
